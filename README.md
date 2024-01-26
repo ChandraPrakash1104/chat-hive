@@ -1,2 +1,1 @@
 # dicord clone
-# dicord-clone
