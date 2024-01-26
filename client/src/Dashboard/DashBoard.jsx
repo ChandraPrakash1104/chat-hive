@@ -7,6 +7,7 @@ import AppBar from './AppBar/AppBar';
 import { logout } from '../shared/utils/auth';
 import { authActions } from '../store/slices/authSlice';
 import { useDispatch } from 'react-redux';
+import { connectWithScoketServer } from '../realTimeCommunication/socketConnection';
 
 const Wrapper = styled('div')({
   width: '100%',
@@ -23,6 +24,7 @@ const DashBoard = () => {
       logout();
     } else {
       dispatch(authActions.SET_USER_DETAILS(JSON.parse(userDetails)));
+      connectWithScoketServer(JSON.parse(userDetails));
     }
   }, []);
   return (
