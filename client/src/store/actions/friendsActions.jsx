@@ -13,3 +13,27 @@ export const sendFriendInvitation = (data, closeDialogHandler) => {
     }
   };
 };
+
+export const acceptFriendInvitation = (data) => {
+  return async (dispatch) => {
+    const response = await api.acceptFriendInvitation(data);
+
+    if (response.error) {
+      dispatch(openAlertMessage(response.exception?.response?.data));
+    } else {
+      dispatch(openAlertMessage('Invitation accepted'));
+    }
+  };
+};
+
+export const rejectFriendInvitation = (data) => {
+  return async (dispatch) => {
+    const response = await api.rejectFriendInvitation(data);
+
+    if (response.error) {
+      dispatch(openAlertMessage(response.exception?.response?.data));
+    } else {
+      dispatch(openAlertMessage('Invitation rejected'));
+    }
+  };
+};

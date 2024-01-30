@@ -10,14 +10,20 @@ const friendsSlice = createSlice({
   name: 'friends',
   initialState,
   reducers: {
-    setPendingFriendssInvitations(state, action) {
-      state.pendingFriendsInvitations = action.pendingFriendsInvitations;
+    setPendingFriendsInvitations(state, action) {
+      state.pendingFriendsInvitations = action.payload;
     },
     setFriends(state, action) {
-      state.friends = action.friends;
+      state.friends = action.payload;
     },
     setOnlineUsers(state, action) {
-      state.onlineUsers = action.onlineUsers;
+      state.onlineUsers = action.payload;
+    },
+    setFriends(state, action) {
+      state.friends = action.payload;
+    },
+    setOnlineUsers(state, action) {
+      state.onlineUsers = action.payload;
     },
   },
 });

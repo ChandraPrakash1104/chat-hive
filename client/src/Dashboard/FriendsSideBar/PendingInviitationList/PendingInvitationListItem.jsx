@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { Box, Tooltip, Typography } from '@mui/material';
 import Avatar from '../../../shared/components/Avatar';
+import InvitationDecisionButton from './InvitationDecisionButton';
+import {
+  acceptFriendInvitation,
+  rejectFriendInvitation,
+} from '../../../store/actions/friendsActions';
+import { useDispatch } from 'react-redux';
 
-const PendingInvitationListItem = ({
-  id,
-  username,
-  mail,
-  acceptFriendInvitation = () => {},
-  rejectFriendInvitation = () => {},
-}) => {
+const PendingInvitationListItem = ({ id, username, mail }) => {
+  const dispatch = useDispatch();
+
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleAcceptInvitation = () => {
-    acceptFriendInvitation({ id });
+    dispatch(acceptFriendInvitation({ id }));
     setButtonDisabled(true);
   };
 
   const handleRejectInvitation = () => {
-    rejectFriendInvitation({ id });
+    dispatch(rejectFriendInvitation({ id }));
     setButtonDisabled(true);
   };
-
   return (
     <Tooltip title={mail}>
       <div style={{ width: '100%' }}>
@@ -46,6 +47,11 @@ const PendingInvitationListItem = ({
           >
             {username}
           </Typography>
+          <InvitationDecisionButton
+            disable={buttonDisabled}
+            acceptInvitationHandler={handleAcceptInvitation}
+            rejectInvitationHandler={handleRejectInvitation}
+          />
         </Box>
       </div>
     </Tooltip>
